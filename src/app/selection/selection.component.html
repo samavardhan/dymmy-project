@@ -1,0 +1,412 @@
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <h6 class="text-muted">List Of Contents</h6>
+      <div class="list-group">
+        <button type="button" class="list-group-item list-group-item-action" (click)="navigateToMetrics()">
+          Metrics
+        </button>
+        <button type="button" class="list-group-item list-group-item-action" (click)="showDetailsform()">Enrollment
+          Form</button>
+        <button type="button" class="list-group-item list-group-item-action">Option 3</button>
+        <button type="button" class="list-group-item list-group-item-action">Option 4</button>
+      </div>
+    </div>
+
+    <!-- first form -->
+    <div class="col-8 cardLayout" *ngIf="showForMetrics">
+      <form class="margintoLeft">
+        <fieldset class="form-group">
+          <div class="row">
+            <legend class="col-form-label col-sm-4 pt-0">Application type:</legend>
+            <div class="col-sm-8">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="gridCheck1" value="proxy" name="proxyname"
+                  [(ngModel)]="model.proxy">
+                <label class="form-check-label" for="gridCheck1">
+                  Proxy
+                </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="gridCheck2" value="sharedflow" name="sharedflowname"
+                  [(ngModel)]="model.sharedflow">
+                <label class="form-check-label" for="gridCheck2">
+                  Sharedflow
+                </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="gridCheck2" value="service" name="servicename"
+                  [(ngModel)]="model.service">
+                <label class="form-check-label" for="gridCheck2">
+                  Service
+                </label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <fieldset class="form-group">
+          <div class="row">
+            <legend class="col-form-label col-sm-4 pt-0">Environment Based Graph:</legend>
+            <div class="col-sm-8">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1"
+                  [(ngModel)]="model.environmentBased" value="Yes">
+                <label class="form-check-label" for="gridRadios1">
+                  Yes
+                </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2"
+                  [(ngModel)]="model.environmentBased" value="No">
+                <label class="form-check-label" for="gridRadios2">
+                  No
+                </label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <div class="form-group row">
+          <label for="inputEmail3" class="col-sm-4 col-form-label">Start Date:</label>
+          <div class="col-sm-8">
+            <p-calendar [(ngModel)]="model.date1" hideOnDateTimeSelect="true" dataType="string" dateFormat="dd/mm/yy"
+              [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030" name="startdate" [showIcon]="true"
+              [showTime]="true" [showSeconds]="true"></p-calendar>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputPassword3" class="col-sm-4 col-form-label">End Date:</label>
+          <div class="col-sm-8">
+            <p-calendar [(ngModel)]="model.date2" hideOnDateTimeSelect="true" dataType="string" dateFormat="dd/mm/yy"
+              [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030" name="enddate" [showIcon]="true"
+              [showTime]="true" [showSeconds]="true"></p-calendar>
+          </div>
+        </div>
+
+        <fieldset class="form-group">
+          <div class="row">
+            <legend class="col-form-label col-sm-4 pt-0">Enterprise Utilization Pipeline Graph:</legend>
+            <div class="col-sm-8">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gridRadios1" id="gridRadios3" value="option3">
+                <label class="form-check-label" for="gridRadios3">
+                  Yes
+                </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gridRadios1" id="gridRadios4" value="option4">
+                <label class="form-check-label" for="gridRadios4">
+                  No
+                </label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <fieldset class="form-group">
+          <div class="row">
+            <legend class="col-form-label col-sm-4 pt-0">Count of Onboarded Application Graph:</legend>
+            <div class="col-sm-8">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gridRadios2" id="gridRadios5" value="option5">
+                <label class="form-check-label" for="gridRadios5">
+                  Yes
+                </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gridRadios2" id="gridRadios6" value="option6">
+                <label class="form-check-label" for="gridRadios6">
+                  No
+                </label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <div class="form-group row d-flex justify-content-end">
+          <div class="col-sm-4">
+            <button type="submit" class="btn btn-primary" (click)="navigateToGraph()">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- first form end -->
+
+
+
+
+
+    <!-- second form start -->
+    <fieldset class="form-group">
+      <div class="row">
+        <legend class="col-form-label col-sm-5 pt-0">Organization Name :</legend>
+        <div class="col-sm-4">
+
+          <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="model.secondForm.orgname"
+            name="orgname" #organizationName="ngModel" required>
+            <option value="">Select</option>
+            <option value="USB">USB</option>
+
+          </select>
+
+        </div>
+      </div>
+    </fieldset>
+
+        <!-- java version -->
+        <fieldset class="form-group">
+          <div class="row">
+            <legend class="col-form-label col-sm-5 pt-0">line of Business :</legend>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" name="applicationName" id="applicationName"
+                [(ngModel)]="model.secondForm.name" #languageVersion="ngModel">
+            </div>
+          </div>
+
+        </fieldset>
+
+
+         <!-- java version -->
+         <fieldset class="form-group">
+          <div class="row">
+            <legend class="col-form-label col-sm-5 pt-0">Firstname :</legend>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" name="languageVersion" id="languageVersion"
+                [(ngModel)]="model.secondForm.languageVersion" #languageVersion="ngModel">
+            </div>
+          </div>
+
+        </fieldset>
+
+         <!-- java version -->
+         <fieldset class="form-group">
+          <div class="row">
+            <legend class="col-form-label col-sm-5 pt-0">Lastname :</legend>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" name="languageVersion" id="languageVersion"
+                [(ngModel)]="model.secondForm.languageVersion" #languageVersions="ngModel">
+            </div>
+          </div>
+
+        </fieldset>
+
+        <!-- java version -->
+        <fieldset class="form-group">
+          <div class="row">
+            <legend class="col-form-label col-sm-5 pt-0">Email Id :</legend>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" name="emailID" id="emailID"
+                [(ngModel)]="model.secondForm.emailID" #languageVersion="ngModel">
+            </div>
+          </div>
+
+        </fieldset>
+
+        <!-- java version -->
+        <fieldset class="form-group">
+          <div class="row">
+            <legend class="col-form-label col-sm-5 pt-0">Application Name Id :</legend>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" name="applicationName" id="applicationName"
+                [(ngModel)]="model.secondForm.applicationName" #languageVersion="ngModel">
+            </div>
+          </div>
+
+        </fieldset>
+
+        <!-- java version -->
+        <fieldset class="form-group">
+          <div class="row">
+            <legend class="col-form-label col-sm-5 pt-0"> Car Id :</legend>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" name="carId" id="carId"
+                [(ngModel)]="model.secondForm.carId" #languageVersion="ngModel">
+            </div>
+          </div>
+
+        </fieldset>
+
+         <!-- java version -->
+         <fieldset class="form-group">
+          <div class="row">
+            <legend class="col-form-label col-sm-5 pt-0"> Costenter :</legend>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" name="costCenter" id="costCenter"
+                [(ngModel)]="model.secondForm.costCenter" #languageVersion="ngModel">
+            </div>
+          </div>
+
+        </fieldset>
+
+         <!-- java version -->
+         <fieldset class="form-group">
+          <div class="row">
+            <legend class="col-form-label col-sm-5 pt-0"> health :</legend>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" name="healthCheckPath" id="healthCheckPath"
+                [(ngModel)]="model.secondForm.healthCheckPath" #languageVersion="ngModel">
+            </div>
+          </div>
+
+        </fieldset>
+
+
+
+
+        <!-- artifactory pipeline -->
+        <fieldset class="form-group">
+          <div class="row">
+            <legend class="col-form-label col-sm-5 pt-0"> Downlod Options :
+            </legend>
+            <div class="col-sm-7">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="jenkinsPipeline" id="jenkinsPipeline"
+                  [(ngModel)]="model.secondForm.jenkinsPipeline" value="Yes" #jenkinsPipeline="ngModel" required>
+                <label class="form-check-label" for="jenkinsPipeline">
+                  local
+                </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="jenkinsPipeline" id="jenkinsPipeline"
+                  [(ngModel)]="model.secondForm.jenkinsPipeline" value="No" #jenkinsPipeline="ngModel" required>
+                <label class="form-check-label" for="jenkinsPipeline">
+                  git
+                </label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-group">
+          <div class="row">
+            <legend class="col-form-label col-sm-5 pt-0">framework Type Name :</legend>
+            <div class="col-sm-4">
+
+              <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="model.secondForm.jenkinsExp"
+                name="orgname" #jenkinsExp="ngModel" required>
+                <option value="">Select</option>
+                <option value="USB">Springboot</option>
+
+              </select>
+
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-group">
+          <div class="row">
+            <legend class="col-form-label col-sm-5 pt-0">k8 Type  :</legend>
+            <div class="col-sm-4">
+
+              <select class="form-control" id="exampleFormControlSelect1" (change)="showInput()" [(ngModel)]="selectedValue"
+                name="language" #languagess="ngModel" required>
+                <option value="">Select</option>
+                <option value="NO">NO</option>
+                <option value="General">General</option>
+                <option value="ISTIO">ISTIO</option>
+
+              </select>
+
+            </div>
+          </div>
+        </fieldset>
+
+        <ng-container **ngIf="selectedValue === 'NO'">
+
+        </ng-container>
+
+        <ng-container **ngIf="selectedValue === 'General'">
+          <fieldset class="form-group">
+            <div class="row">
+              <legend class="col-form-label col-sm-5 pt-0"> k8 namespace :</legend>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" name="k8NameSpace" id="k8NameSpace"
+                  [(ngModel)]="model.secondForm.k8NameSpace" #k8NameSpace="ngModel">
+              </div>
+            </div>
+
+          </fieldset>
+
+          <fieldset class="form-group">
+              <div class="row">
+                <legend class="col-form-label col-sm-5 pt-0"> k8 domain name :</legend>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control" name="k8DomainName" id="k8DomainName"
+                    [(ngModel)]="model.secondForm.k8DomainName" #kubernateesDoaminName="ngModel">
+                </div>
+              </div>
+
+            </fieldset>
+        </ng-container>
+
+        <ng-container **ngIf="selectedValue === 'ISTO'">
+            <fieldset class="form-group">
+                <div class="row">
+                  <legend class="col-form-label col-sm-5 pt-0"> k8 domain name :</legend>
+                  <div class="col-sm-4">
+                    <input type="text" class="form-control" name="k8DomainName" id="k8DomainName"
+                      [(ngModel)]="model.secondForm.k8DomainName" #kubernateesDomainName="ngModel">
+                  </div>
+                </div>
+
+              </fieldset>
+
+              <fieldset class="form-group">
+                  <div class="row">
+                    <legend class="col-form-label col-sm-5 pt-0"> k8 cluster name :</legend>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control" name="k8ClusterName" id="k8ClusterName"
+                        [(ngModel)]="model.secondForm.k8ClusterName" #kubernateesClusterName="ngModel">
+                    </div>
+                  </div>
+
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <div class="row">
+                      <legend class="col-form-label col-sm-5 pt-0"> k8 Project name :</legend>
+                      <div class="col-sm-4">
+                        <input type="text" class="form-control" name="k8ProjectName" id="k8ProjectName"
+                          [(ngModel)]="model.secondForm.k8ProjectName" #languageVersion="ngModel">
+                      </div>
+                    </div>
+
+                  </fieldset>
+
+        </ng-container>
+
+
+
+
+
+
+
+
+
+
+
+        <!-- is comments in-->
+        <fieldset class="form-group">
+          <div class="row">
+            <legend class="col-form-label col-sm-5 pt-0">comments
+            </legend>
+            <div class="col-sm-7">
+              <textarea class="form-control" id="comments" rows="3" name="commets"
+                [(ngModel)]="model.secondForm.comments" #comments="ngModel" ></textarea>
+              <!-- <span *ngIf="comments.errors && comments.touched" style="font-size: 13px;color: red;">
+                Required Field
+              </span> -->
+            </div>
+          </div>
+        </fieldset>
+        <div class="form-group row d-flex justify-content-end">
+          <div class="col-sm-4">
+            <button type="submit" class="btn btn-primary" (click)="submitSecondForm(detailsForm)">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- secondForm end -->
+  </div>
+</div>
+
+

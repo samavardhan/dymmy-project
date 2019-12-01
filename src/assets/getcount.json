@@ -1,0 +1,16 @@
+{
+    "applicationTypeResponses":[
+        {
+            "applicationType":"proxy",
+            "count":73
+        },
+        {
+            "applicationType":"sharedflow",
+            "count":10
+        },
+        {
+            "applicationType":"service",
+            "count":29
+        }
+    ]
+}

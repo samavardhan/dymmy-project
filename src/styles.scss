@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,body{
+    background-image: linear-gradient(#b2b2b2bd, #ebebeb63);
+    height: 120%;
+}
+
+.form-control.ng-touched.ng-invalid {
+    border: 1px solid red;
+  } 

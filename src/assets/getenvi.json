@@ -1,0 +1,22 @@
+{
+    "environmentResponses": [
+        {
+            "environment": "dev",
+            "count": 47
+        },
+        {
+            "environment": "it",
+            "count": 14
+        },
+        {
+            "environment": "uat",
+            "count": 9
+        },
+        {
+            "environment": "prod",
+            "count": 9
+        }
+    ],
+    "exceptionOccured":false,
+    "exceptionReason":""
+}

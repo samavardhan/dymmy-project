@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="row pt-3">
+        <div class="col-6">
+            <p class="d-flex justify-content-center title">Number of Deployments in {{newdate}}</p>
+            <p-chart type="pie" [options]="options" [data]="data" width="30vw" height="40vh"></p-chart>
+        </div>
+
+        <div class="col-6" *ngIf="model.environment.length != 0">
+            <p class="d-flex justify-content-center title">Number of Deployments(by environment) in {{newdate}}</p>
+            <p-chart type="pie" [options]="options" [data]="enviData" width="30vw" height="40vh"></p-chart>
+        </div>
+    </div>
+</div>
